@@ -2,7 +2,7 @@
   "name": "jeffreychen.info",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jeffreychen.info",
+  "homepage": "jeffreychen.info",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "react": "^16.10.2",

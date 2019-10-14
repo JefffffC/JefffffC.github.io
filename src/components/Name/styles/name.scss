@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "FoxCavalier";
+  src: url("../assets/FoxCavalier.woff2") format("woff2"),
+    url("../assets/FoxCavalier.woff") format("woff"),
+    url("../assets/FoxCavalier.ttf") format("truetype");
+}
+
+.name-section {
+  .name-holder {
+    position: relative;
+    .jeff-name {
+      z-index: 10;
+      display: inline-block;
+      font-family: "FoxCavalier";
+      font-size: 12rem;
+      position: relative;
+    }
+    .starfield-holder {
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  .warp-slider {
+    width: 250px;
+  }
+}

@@ -1,14 +1,13 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import Name from "./components/Name";
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>
-          Hi.
-        </h1>
-      </header>
+      <div className="name-content-holder d-flex flex-column align-items-center justify-content-center">
+        <Name />
+      </div>
     </div>
   );
 }

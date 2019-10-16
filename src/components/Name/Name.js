@@ -11,7 +11,6 @@ import {
   faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 import { Shake } from "reshake";
-import Typist from "react-typist";
 
 library.add(faForward, faStepForward, faEnvelope);
 

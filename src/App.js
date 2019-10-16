@@ -1,6 +1,10 @@
 import React from "react";
 import Name from "./components/Name";
 import "./App.scss";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core"
+
+library.add(fab);
 
 function App() {
   return (

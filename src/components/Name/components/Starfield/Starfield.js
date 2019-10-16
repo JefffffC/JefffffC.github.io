@@ -15,13 +15,13 @@ export default class Starfield extends Component {
   componentDidMount() {
     var newObj = new WarpSpeed("starfield-canvas", {
       speed: ((this.props.warpSpeed / 100) * this.props.warpSpeed) / 4,
-      speedAdjFactor: 0.03,
-      density: 12,
+      speedAdjFactor: 0.008,
+      density: 7,
       shape: "circle",
       warpEffect: true,
       warpEffectLength: 0.3,
       depthFade: true,
-      starSize: 10,
+      starSize: 15,
       backgroundColor: "hsl(263,45%,7%)",
       starColor: "#FFFFFF"
     });

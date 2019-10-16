@@ -14,7 +14,11 @@ export default class Starfield extends Component {
 
   componentDidMount() {
     var newObj = new WarpSpeed("starfield-canvas", {
-      speed: ((this.props.warpSpeed / 100) * this.props.warpSpeed) / 4,
+      speed:
+        ((this.props.warpSpeed / 3000) *
+          this.props.warpSpeed *
+          this.props.warpSpeed) /
+        4,
       speedAdjFactor: 0.008,
       density: 7,
       shape: "circle",
@@ -23,13 +27,16 @@ export default class Starfield extends Component {
       depthFade: true,
       starSize: 15,
       backgroundColor: "hsl(263,45%,7%)",
-      starColor: "#FFFFFF"
+      randomColors: true
     });
     this.setState({ ref: newObj });
   }
   componentDidUpdate() {
     this.state.ref.TARGET_SPEED =
-    ((this.props.warpSpeed / 100) * this.props.warpSpeed) / 4;
+      ((this.props.warpSpeed / 3000) *
+        this.props.warpSpeed *
+        this.props.warpSpeed) /
+      4;
   }
 
   render() {

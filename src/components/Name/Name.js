@@ -5,8 +5,13 @@ import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faForward, faStepForward, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import {
+  faForward,
+  faStepForward,
+  faEnvelope
+} from "@fortawesome/free-solid-svg-icons";
+import { Shake } from "reshake";
+import Typist from "react-typist";
 
 library.add(faForward, faStepForward, faEnvelope);
 
@@ -31,29 +36,41 @@ export default class Name extends Component {
             <div className="starfield-holder">
               <Starfield warpSpeed={this.state.warpSpeed} />
             </div>
-            <span className="knockout__text fullblock">JEFF CHEN</span>
-            <svg
-              className="knockout__svg"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              width="100%"
-              height="100%"
+            <Shake
+              h={Math.max(this.state.warpSpeed - 40, 0) / 6}
+              v={Math.max(this.state.warpSpeed - 40, 0) / 6}
+              r={0}
+              dur={310}
+              int={5}
+              max={100}
+              fixed={true}
+              fixedStop={false}
+              freez={false}
             >
-              <mask id="text-clip">
-                <rect id="bg" width="100%" height="100%" fill="white" />
-                <text
-                  x="50%"
-                  y="50%"
-                  dominantBaseline="middle"
-                  textAnchor="middle"
-                  fill="#000"
-                >
-                  JEFF CHEN
-                </text>
-              </mask>
+              <span className="knockout__text fullblock">JEFF CHEN</span>
+              <svg
+                className="knockout__svg"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                width="100%"
+                height="100%"
+              >
+                <mask id="text-clip">
+                  <rect id="bg" width="100%" height="100%" fill="white" />
+                  <text
+                    x="50%"
+                    y="50%"
+                    dominantBaseline="middle"
+                    textAnchor="middle"
+                    fill="#000"
+                  >
+                    JEFF CHEN
+                  </text>
+                </mask>
 
-              <rect width="100%" height="100%" mask="url(#text-clip)" />
-            </svg>
+                <rect width="100%" height="100%" mask="url(#text-clip)" />
+              </svg>
+            </Shake>
           </span>
         </h1>
         <div className="control-section">

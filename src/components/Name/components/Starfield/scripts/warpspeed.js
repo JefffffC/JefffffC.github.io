@@ -61,11 +61,13 @@
     );
   }
 
-  function Star(x, y, z) {
+  function Star(x, y, z, rgb, rgba) {
     this.x = x;
     this.y = y;
     this.z = z;
     this.size = 0.5 + Math.random();
+    this.rgb = rgb;
+    this.rgba = rgba;
   }
 
   function WarpSpeed(targetId, config) {
@@ -136,12 +138,56 @@
     this.prevW = -1;
     this.prevH = -1; //width and height will be set at first draw call
     this.stars = [];
+    var customColors = {
+      defaultRGB:
+        config.starColor === undefined
+          ? "rgb(255, 255, 255)"
+          : config.starColor,
+      defaultRGBA:
+        config.starColor === undefined
+          ? "rgb(255, 255, 255,"
+          : config.starColor.substring(0, config.starColor.length - 1) + ",",
+      redRGB: "rgb(237, 8, 0)",
+      redRGBA: "rgba(237, 8, 0,",
+      blueRGB: "rgb(194, 199, 255)",
+      blueRGBA: "rgba(194, 199, 255,",
+      yellowRGB: "rgb(255, 229, 168)",
+      yellowRGBA: "rgb(255, 229, 168,",
+      orangeRGB: "rgb(255, 171, 97)",
+      orangeRGBA: "rgba(255, 171, 97,"
+    };
     for (var i = 0; i < this.DENSITY * 1000; i++) {
+      var rgb, rgba;
+      if (config.randomColors === true) {
+        var randNum = Math.random();
+        if (randNum < 0.5) {
+          rgb = customColors.defaultRGB;
+          rgba = customColors.defaultRGBA;
+        } else if (randNum >= 0.5 && randNum < 0.55) {
+          rgb = customColors.redRGB;
+          rgba = customColors.redRGBA;
+        } else if (randNum >= 0.55 && randNum < 0.7) {
+          rgb = customColors.blueRGB;
+          rgba = customColors.blueRGBA;
+        } else if (randNum >= 0.7 && randNum < 0.85) {
+          rgb = customColors.yellowRGB;
+          rgba = customColors.yellowRGBA;
+        } else {
+          rgb = customColors.orangeRGB;
+          rgba = customColors.orangeRGBA;
+        }
+      }
+      else {
+        rgb = customColors.defaultRGB;
+        rgba = customColors.defaultRGBA;
+      }
       this.stars.push(
         new Star(
           (Math.random() - 0.5) * 1000,
           (Math.random() - 0.5) * 1000,
-          1000 * Math.random()
+          1000 * Math.random(),
+          rgb,
+          rgba
         )
       );
     }
@@ -181,10 +227,6 @@
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = this.BACKGROUND_COLOR;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        var rgb =
-            "rgb(" + this.STAR_R + "," + this.STAR_G + "," + this.STAR_B + ")",
-          rgba =
-            "rgba(" + this.STAR_R + "," + this.STAR_G + "," + this.STAR_B + ",";
         for (var i = 0; i < this.stars.length; i++) {
           var s = this.stars[i];
           var xOnDisplay = s.x / s.z,
@@ -201,9 +243,9 @@
           if (size < 0.3) continue; //don't draw very small dots
           if (this.DEPTH_ALPHA) {
             var alpha = (1000 - s.z) / 1000;
-            ctx.fillStyle = rgba + (alpha > 1 ? 1 : alpha) + ")";
+            ctx.fillStyle = s.rgba + (alpha > 1 ? 1 : alpha) + ")";
           } else {
-            ctx.fillStyle = rgb;
+            ctx.fillStyle = s.rgb;
           }
           if (this.WARP_EFFECT) {
             ctx.beginPath();

@@ -18,13 +18,28 @@ export default class Name extends Component {
   constructor() {
     super();
     this.state = {
-      warpSpeed: 15
+      warpSpeed: 15,
+      isMobile: false
     };
     this.handleWarpSlide = this.handleWarpSlide.bind(this);
+    this.handleWindowResize = this.handleWindowResize.bind(this);
   }
 
   handleWarpSlide(event, newValue) {
     this.setState({ warpSpeed: newValue });
+  }
+
+  handleWindowResize() {
+    this.setState({ isMobile: window.innerWidth < 550 });
+    console.log("state is " + this.state.isMobile);
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onWindowResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize);
   }
 
   render() {

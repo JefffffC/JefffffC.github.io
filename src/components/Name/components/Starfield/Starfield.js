@@ -8,7 +8,7 @@ export default class Starfield extends Component {
     super(props);
     this.state = {
       hasLoaded: 0,
-      ref: null
+      ref: null,
     };
   }
 
@@ -27,16 +27,27 @@ export default class Starfield extends Component {
       depthFade: true,
       starSize: 15,
       backgroundColor: "hsl(263,45%,7%)",
-      randomColors: true
+      randomColors: true,
     });
     this.setState({ ref: newObj });
   }
-  componentDidUpdate() {
-    this.state.ref.TARGET_SPEED =
-      ((this.props.warpSpeed / 3000) *
-        this.props.warpSpeed *
-        this.props.warpSpeed) /
-      4;
+  componentDidUpdate(prevProps) {
+    // this.state.ref.TARGET_SPEED =
+    //   ((this.props.warpSpeed / 3000) *
+    //     this.props.warpSpeed *
+    //     this.props.warpSpeed) /
+    //   4;
+
+    if (prevProps.warpSpeed !== this.props.warpSpeed) {
+      this.setState((state) => {
+        state.ref.TARGET_SPEED =
+          ((this.props.warpSpeed / 3000) *
+            this.props.warpSpeed *
+            this.props.warpSpeed) /
+          4;
+        return state;
+      });
+    }
   }
 
   render() {
@@ -49,5 +60,5 @@ export default class Starfield extends Component {
 }
 
 Starfield.propTypes = {
-  warpSpeed: PropTypes.number
+  warpSpeed: PropTypes.number,
 };

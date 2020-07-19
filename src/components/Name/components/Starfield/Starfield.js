@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./styles/starfield.scss";
+import styles from "./styles/starfield.module.css";
 import WarpSpeed from "./scripts/warpspeed.js";
 
 export default class Starfield extends Component {
@@ -13,7 +13,7 @@ export default class Starfield extends Component {
   }
 
   componentDidMount() {
-    var newObj = new WarpSpeed("starfield-canvas", {
+    var newObj = new WarpSpeed(styles.starfieldCanvas, {
       speed:
         ((this.props.warpSpeed / 3000) *
           this.props.warpSpeed *
@@ -32,11 +32,6 @@ export default class Starfield extends Component {
     this.setState({ ref: newObj });
   }
   componentDidUpdate(prevProps) {
-    // this.state.ref.TARGET_SPEED =
-    //   ((this.props.warpSpeed / 3000) *
-    //     this.props.warpSpeed *
-    //     this.props.warpSpeed) /
-    //   4;
 
     if (prevProps.warpSpeed !== this.props.warpSpeed) {
       this.setState((state) => {
@@ -52,8 +47,8 @@ export default class Starfield extends Component {
 
   render() {
     return (
-      <div className="starfield-background">
-        <canvas id="starfield-canvas"></canvas>
+      <div className={styles.starfieldBackground}>
+        <canvas id={styles.starfieldCanvas}></canvas>
       </div>
     );
   }

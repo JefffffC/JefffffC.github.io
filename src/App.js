@@ -1,18 +1,27 @@
 import React from "react";
 import Name from "./components/Name";
-import "./App.scss";
+import styles from "./app.module.css";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { library } from "@fortawesome/fontawesome-svg-core"
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { create } from "jss";
+import { StylesProvider, jssPreset } from "@material-ui/core/styles";
 
 library.add(fab);
 
+const jss = create({
+  ...jssPreset(),
+  insertionPoint: document.getElementById("jss-insertion-point"),
+});
+
 function App() {
   return (
-    <div className="App">
-      <div className="name-content-holder d-flex flex-column align-items-center justify-content-center">
-        <Name />
+    <StylesProvider jss={jss}>
+      <div className={styles.app}>
+        <div className={styles.nameContentHolder}>
+          <Name />
+        </div>
       </div>
-    </div>
+    </StylesProvider>
   );
 }
 

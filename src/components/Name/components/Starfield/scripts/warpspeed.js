@@ -71,7 +71,6 @@
   }
 
   function WarpSpeed(targetId, config) {
-    console.log(config);
     this.targetId = targetId;
     if (WarpSpeed.RUNNING_INSTANCES === undefined)
       WarpSpeed.RUNNING_INSTANCES = {};

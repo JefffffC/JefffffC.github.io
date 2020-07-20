@@ -8,7 +8,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faForward,
   faStepForward,
-  faEnvelope
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import { Shake } from "reshake";
 
@@ -18,11 +18,12 @@ export default class Name extends Component {
   constructor() {
     super();
     this.state = {
-      warpSpeed: 15,
-      isMobile: false
+      warpSpeed: 100,
+      isMobile: false,
     };
     this.handleWarpSlide = this.handleWarpSlide.bind(this);
     this.handleWindowResize = this.handleWindowResize.bind(this);
+    this.decelerateWarp = this.decelerateWarp.bind(this);
   }
 
   handleWarpSlide(event, newValue) {
@@ -34,11 +35,30 @@ export default class Name extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.onWindowResize);
+    window.addEventListener("resize", this.onWindowResize);
+    this.decelerateWarp();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onWindowResize);
+    window.removeEventListener("resize", this.onWindowResize);
+  }
+
+  decelerateWarp = () => {
+    const task = (i) => {
+      setTimeout( () => {
+        let speed = 114 - (this.returnBezierNumber(i/100) * 100);
+        // console.log(speed);
+        this.setState({ warpSpeed: speed });
+      }, 50 * i);
+    }
+    let i = 100;
+    while (i > 0) {
+      task(i);
+      i--;
+    }
+  }
+  returnBezierNumber = (x) => {
+    return (((((x*x)/((x*x)+((1-x)*(1-x))))/1.18) + 0.15))
   }
 
   render() {
@@ -61,13 +81,9 @@ export default class Name extends Component {
               freez={false}
             >
               <span>JEFF CHEN</span>
-              <svg
-                className={styles.knockoutSVG}
-                width="100%"
-                height="100%"
-              >
+              <svg className={styles.knockoutSVG} width="100%" height="100%">
                 <mask id="text-clip">
-                  <rect id="bg" width="100%" height="100%"/>
+                  <rect id="bg" width="100%" height="100%" />
                   <text
                     x="50%"
                     y="50%"
@@ -86,7 +102,9 @@ export default class Name extends Component {
         </h1>
         <div className={styles.controlSection}>
           <div className={`${styles.sliderHolder} ${styles.standardShadow}`}>
-            <Typography className={styles.continuousSlider}>Warp Speed</Typography>
+            <Typography className={styles.continuousSlider}>
+              Warp Speed
+            </Typography>
             <div className={styles.sliderControl}>
               <FontAwesomeIcon
                 icon={"step-forward"}
@@ -98,12 +116,13 @@ export default class Name extends Component {
                 aria-labelledby={styles.continuousSlider}
                 className={styles.warpSlider}
               />
-              <FontAwesomeIcon icon={"forward"} className={styles.sliderIconRight} />
+              <FontAwesomeIcon
+                icon={"forward"}
+                className={styles.sliderIconRight}
+              />
             </div>
           </div>
-          <div className={styles.standardHolder}>
-            Website Coming Soon.
-          </div>
+          <div className={styles.standardHolder}>Website Coming Soon.</div>
           <div className={styles.centeredFlex}>
             <a
               href="https://www.linkedin.com/in/jeffreychen27/"

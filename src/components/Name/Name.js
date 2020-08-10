@@ -18,7 +18,7 @@ export default class Name extends Component {
   constructor() {
     super();
     this.state = {
-      warpSpeed: 100,
+      warpSpeed: 50,
       isMobile: false,
     };
     this.handleWarpSlide = this.handleWarpSlide.bind(this);
@@ -46,19 +46,21 @@ export default class Name extends Component {
   decelerateWarp = () => {
     const task = (i) => {
       setTimeout( () => {
-        let speed = 114 - (this.returnBezierNumber(i/100) * 100);
+        let speed = 50 - (this.returnLinearDecel(i/100) * 100);
         // console.log(speed);
         this.setState({ warpSpeed: speed });
+        console.log(speed);
       }, 50 * i);
     }
-    let i = 100;
+    let i = 30;
     while (i > 0) {
       task(i);
       i--;
     }
   }
-  returnBezierNumber = (x) => {
-    return (((((x*x)/((x*x)+((1-x)*(1-x))))/1.18) + 0.15))
+  returnLinearDecel = (x) => {
+    x = x - 0.01
+    return (x)
   }
 
   render() {
@@ -122,7 +124,7 @@ export default class Name extends Component {
               />
             </div>
           </div>
-          <div className={styles.standardHolder}>Website Coming Soon.</div>
+          <div className={styles.standardHolder}>Aspiring Product Manager. Developer. Sci-Fi Nerd.</div>
           <div className={styles.centeredFlex}>
             <a
               href="https://www.linkedin.com/in/jeffreychen27/"

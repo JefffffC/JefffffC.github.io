@@ -24,17 +24,20 @@
   .standardHolder {
     font-size: 0.8rem;
   }
+  .nameSection {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .nameSection {
-  height: 100%;
-  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .starfieldHolder {
   z-index: -1;
   position: absolute;
@@ -51,102 +54,10 @@
   font-size: 12rem;
   position: relative;
   color: #fff;
-  margin-bottom: -180px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
-@media (max-width: 1380px) {
-  .nameHolder {
-    font-size: 10rem;
-    margin-bottom: -130px;
-  }
-}
-@media (max-width: 1220px) {
-  .nameHolder {
-    font-size: 9rem;
-    margin-bottom: -125px;
-  }
-}
-@media (max-width: 1072px) {
-  .nameHolder {
-    font-size: 8rem;
-    margin-bottom: -105px;
-  }
-}
-@media (max-width: 954px) {
-  .nameHolder {
-    font-size: 7rem;
-    margin-bottom: -90px;
-  }
-}
-@media (max-width: 842px) {
-  .nameHolder {
-    font-size: 6rem;
-    margin-bottom: -70px;
-  }
-}
-@media (max-width: 713.99px) {
-  .nameHolder {
-    font-size: 5rem;
-    margin-bottom: -45px;
-  }
-}
-@media (max-width: 592px) {
-  .nameHolder {
-    font-size: 4rem;
-    margin-bottom: -30px;
-  }
-}
-@media (max-width: 472px) {
-  .nameHolder {
-    font-size: 3rem;
-    margin-bottom: -10px;
-  }
-}
-@media (max-width: 360px) {
-  .nameHolder {
-    font-size: 2.5rem;
-    margin-bottom: 0px;
-  }
-}
-.knockout {
-  display: inline-block;
-  overflow: hidden;
-  text-align: left;
-  position: relative;
-  color: transparent;
-  border: 0.5em solid #fff;
-  white-space: nowrap;
-}
-.knockoutSVG {
-  fill: rgb(255, 255, 255);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.controlSection {
-  z-index: 10;
-}
-.sliderHolder {
-  z-index: 11;
-  background-color: #fff;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-family: "FoxCavalier";
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-@media (max-width: 714px) {
-  .sliderHolder {
-    padding: 5px 10px;
-    border-radius: 6px;
-  }
-  .continuousSlider {
-    font-size: 0.8rem;
-  }
-}
+
 .continuousSlider {
   font-family: "FoxCavalier";
 }
@@ -192,7 +103,125 @@
 }
 
 .centeredFlex {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+}
+
+.controlSection {
+  z-index: 10;
+  margin-top: -150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1380px) {
+  .nameHolder {
+    font-size: 10rem;
+  }
+  .controlSection {
+    z-index: 10;
+    margin-top: -150px;
+  }
+}
+@media screen and (max-width: 1220px) {
+  .nameHolder {
+    font-size: 9rem;
+  }
+  .controlSection {
+    z-index: 10;
+    margin-top: -100px;
+  }
+}
+@media screen and (max-width: 1072px) {
+  .nameHolder {
+    font-size: 8rem;
+    margin-bottom: -50px;
+  }
+  .controlSection {
+    z-index: 10;
+    margin-top: -50px;
+  }
+}
+@media screen and (max-width: 954px) {
+  .nameHolder {
+    font-size: 7rem;
+    margin-bottom: -90px;
+  }
+  .controlSection {
+    z-index: 10;
+    margin-top: 0px;
+  }
+}
+@media screen and (max-width: 842px) {
+  .nameHolder {
+    font-size: 6rem;
+    margin-bottom: -70px;
+  }
+}
+@media screen and (max-width: 713.99px) {
+  .nameHolder {
+    font-size: 5rem;
+    margin-bottom: -45px;
+  }
+}
+@media screen and (max-width: 592px) {
+  .nameHolder {
+    font-size: 4rem;
+    margin-bottom: -30px;
+  }
+}
+@media screen and (max-width: 472px) {
+  .nameHolder {
+    font-size: 3rem;
+    margin-bottom: -10px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .nameHolder {
+    font-size: 2.5rem;
+    margin-bottom: 0px;
+  }
+}
+.knockout {
+  display: inline-block;
+  overflow: hidden;
+  text-align: left;
+  position: relative;
+  color: transparent;
+  border: 0.5em solid #fff;
+  white-space: nowrap;
+}
+.knockoutSVG {
+  fill: rgb(255, 255, 255);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.sliderHolder {
+  z-index: 11;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: "FoxCavalier";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: 0;
+}
+@media (max-width: 714px) {
+  .sliderHolder {
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+  .continuousSlider {
+    font-size: 0.8rem;
+  }
 }
